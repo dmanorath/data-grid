@@ -1,40 +1,68 @@
-.md-grid {
-    width: 100%;
-    height: auto;
-    border: 1px solid #d1d1d1;
-    display: table;
+/*************************
+Author: Manorath Dhakal
+URL: https://projects.mrdhakal.com/
+Description: DGrid for CSS 
+*************************/
+
+.md-grid-wrap-default {
+  height: 500px;
+  overflow: scroll;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
 }
 
-.md-grid-header {
-    width: 100%;
-    display: table-header-group;
-    background-color:#d1d1d1;
-    border-bottom: 2px solid #333;
-    font-weight: 600;
+.md-grid-wrap-default .md-grid {
+  width: 100%;
+  /* display: table; */
+  border-collapse: collapse;
+  color: #212121;
+  font-family: sans-serif;
+  font-size: 13px;
+  flex-direction: column;
+  border-spacing: 0;
 }
 
-.md-grid-header .md-grid-col {
-    display: table-cell;
+.md-grid-wrap-default .md-grid-header {
+  width: 100%;
+  /* display: table-header-group; */
+  background-color: #f1f1f1;
+  font-weight: 600;
+  position: relative;
+}
+
+.md-grid-wrap-default .md-grid-header .md-grid-col {
+  /* display: table-cell; */
+  position: sticky;
+  top: -2px;
+  background-color: #f1f1f1;
+  cursor: pointer !important;
+  border-bottom: 2px solid #b1b1b1;
 }
 
 .md-grid-body {
-    width: 100%;
-    display: table-row-group;
+  width: 100%;
+  /* display: table-row-group; */
 }
 
-.md-grid-row {
-    width: 100%;
-    border-bottom: 1px solid #d1d1d1;
-    display: table-row;
+.md-grid-wrap-default .md-grid-row {
+  width: 100%;
+  border-bottom: 1px solid #d1d1d1;
+  /* display: table-row; */
 }
 
-.md-grid-row:nth-child(odd) {
-    background-color: #f7f7f7;
+/* .md-grid-wrap-default .md-grid-row:nth-child(odd) {
+  background-color: #f7f7f7;
+} */
+
+.md-grid-wrap-default .md-grid-col {
+  padding: 10px;
+  /* display: table-cell; */
+  border-right: 1px solid #d1d1d1;
 }
 
-.md-grid-col {
-    /* float: left;*/
-    padding: 10px; 
-    display: table-cell;
-    border-right: 1px solid #d1d1d1;
+.md-grid-wrap-default .md-grid-col {
+  vertical-align: text-top;
+  text-align: left;
+  text-indent: -0.5em;
+  padding: 14px 20px;
 }
