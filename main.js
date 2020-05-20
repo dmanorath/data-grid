@@ -1,12 +1,40 @@
 //call grid
 var columnDefs = [
-  { headerName: "Vid", field: "vid" },
-  { headerName: "Video Id", field: "video_id" },
-  { headerName: "Video Title", field: "video_title" },
-  { headerName: "Date Posted", field: "date_posted" },
-  { headerName: "Date Uploaded", field: "date_uploaded" },
-  { headerName: "Cat Id", field: "cat_id" },
-  { headerName: "Cat Name", field: "cat_name" }
+  { headerName: "Vid", field: "vid", sortable: true },
+  //{ headerName: "Video Id", field: "video_id" },
+  {
+    headerName: "Video Title",
+    field: "video_title",
+    colType: "link",
+    callLink: "https://www.k6aaja.com/videos/watch/",
+    callLinkParam: "video_id",
+    searchable: false,
+    sortable: true,
+  },
+  {
+    headerName: "Date Posted",
+    field: "date_posted",
+    sortable: true,
+    colWidth: "160px",
+    colType: "dateTime",
+  },
+  {
+    headerName: "Date Uploaded",
+    field: "date_uploaded",
+    colWidth: "160px",
+    colType: "date",
+    sortable: true,
+  },
+  { headerName: "Cat Id", field: "cat_id", colWidth: "90px" },
+  {
+    headerName: "Cat Name",
+    field: "cat_name",
+    colType: "link",
+    callLink: "https://www.k6aaja.com/videos/c/",
+    callLinkParam: "cat_id",
+    sortable: true,
+    colWidth: "120px",
+  },
 ];
 
 // specify the data
@@ -19,7 +47,7 @@ var rowData = [
     date_posted: "2020-03-20 12:30:03",
     date_uploaded: "2020-03-20 03:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1838,
@@ -29,7 +57,7 @@ var rowData = [
     date_posted: "2020-03-18 12:30:06",
     date_uploaded: "2020-03-18 02:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1837,
@@ -39,7 +67,7 @@ var rowData = [
     date_posted: "2020-03-17 12:30:05",
     date_uploaded: "2020-03-17 03:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1833,
@@ -48,7 +76,7 @@ var rowData = [
     date_posted: "2020-03-13 12:30:05",
     date_uploaded: "2020-03-13 04:15:11",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1834,
@@ -58,7 +86,7 @@ var rowData = [
     date_posted: "2020-03-13 12:30:05",
     date_uploaded: "2020-03-13 03:45:02",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1835,
@@ -68,7 +96,7 @@ var rowData = [
     date_posted: "2020-03-14 12:52:43",
     date_uploaded: "2020-03-13 03:00:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1836,
@@ -78,7 +106,7 @@ var rowData = [
     date_posted: "2020-03-14 12:52:43",
     date_uploaded: "2020-03-12 03:00:11",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1832,
@@ -88,7 +116,7 @@ var rowData = [
     date_posted: "2020-03-11 12:12:37",
     date_uploaded: "2020-03-11 03:09:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1831,
@@ -98,7 +126,7 @@ var rowData = [
     date_posted: "2020-03-10 12:30:05",
     date_uploaded: "2020-03-10 03:45:02",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1827,
@@ -108,7 +136,7 @@ var rowData = [
     date_posted: "2020-03-08 08:42:41",
     date_uploaded: "2020-03-06 04:15:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1828,
@@ -118,7 +146,7 @@ var rowData = [
     date_posted: "2020-03-08 08:42:41",
     date_uploaded: "2020-03-06 03:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1829,
@@ -128,7 +156,7 @@ var rowData = [
     date_posted: "2020-03-08 08:45:30",
     date_uploaded: "2020-03-06 03:00:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1830,
@@ -138,7 +166,7 @@ var rowData = [
     date_posted: "2020-03-08 08:45:31",
     date_uploaded: "2020-03-05 03:00:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1824,
@@ -148,7 +176,7 @@ var rowData = [
     date_posted: "2020-03-05 12:30:04",
     date_uploaded: "2020-03-04 02:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1826,
@@ -158,7 +186,7 @@ var rowData = [
     date_posted: "2020-03-05 12:30:04",
     date_uploaded: "2020-03-03 05:43:38",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1825,
@@ -168,7 +196,7 @@ var rowData = [
     date_posted: "2020-03-05 12:30:04",
     date_uploaded: "2020-03-03 03:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1821,
@@ -178,7 +206,7 @@ var rowData = [
     date_posted: "2020-02-29 08:56:40",
     date_uploaded: "2020-02-28 08:27:26",
     cat_id: 1,
-    cat_name: "Movies"
+    cat_name: "Movies",
   },
   {
     vid: 1823,
@@ -187,7 +215,7 @@ var rowData = [
     date_posted: "2020-03-05 12:30:03",
     date_uploaded: "2020-02-28 04:00:12",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1820,
@@ -197,7 +225,7 @@ var rowData = [
     date_posted: "2020-02-29 08:56:18",
     date_uploaded: "2020-02-28 03:53:04",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1819,
@@ -207,7 +235,7 @@ var rowData = [
     date_posted: "2020-02-26 12:42:12",
     date_uploaded: "2020-02-26 02:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1817,
@@ -217,7 +245,7 @@ var rowData = [
     date_posted: "2020-02-26 12:33:10",
     date_uploaded: "2020-02-25 03:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1816,
@@ -226,7 +254,7 @@ var rowData = [
     date_posted: "2020-02-26 12:33:09",
     date_uploaded: "2020-02-21 04:00:12",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1818,
@@ -236,7 +264,7 @@ var rowData = [
     date_posted: "2020-02-26 12:33:10",
     date_uploaded: "2020-02-21 03:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1815,
@@ -246,7 +274,7 @@ var rowData = [
     date_posted: "2020-02-22 10:43:48",
     date_uploaded: "2020-02-21 03:30:30",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1822,
@@ -256,7 +284,7 @@ var rowData = [
     date_posted: "2020-02-29 08:56:42",
     date_uploaded: "2020-02-20 07:15:10",
     cat_id: 1,
-    cat_name: "Movies"
+    cat_name: "Movies",
   },
   {
     vid: 1812,
@@ -266,7 +294,7 @@ var rowData = [
     date_posted: "2020-02-21 06:18:04",
     date_uploaded: "2020-02-20 02:45:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1813,
@@ -276,7 +304,7 @@ var rowData = [
     date_posted: "2020-02-21 06:18:14",
     date_uploaded: "2020-02-19 02:45:02",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1814,
@@ -286,7 +314,7 @@ var rowData = [
     date_posted: "2020-02-21 06:18:14",
     date_uploaded: "2020-02-18 03:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1797,
@@ -296,7 +324,7 @@ var rowData = [
     date_posted: "2020-02-17 10:56:41",
     date_uploaded: "2020-02-16 04:44:47",
     cat_id: 1,
-    cat_name: "Movies"
+    cat_name: "Movies",
   },
   {
     vid: 1798,
@@ -306,7 +334,7 @@ var rowData = [
     date_posted: "2020-02-17 10:56:42",
     date_uploaded: "2020-02-14 05:10:56",
     cat_id: 1,
-    cat_name: "Movies"
+    cat_name: "Movies",
   },
   {
     vid: 1811,
@@ -316,7 +344,7 @@ var rowData = [
     date_posted: "2020-02-17 10:58:04",
     date_uploaded: "2020-02-14 04:00:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1789,
@@ -326,7 +354,7 @@ var rowData = [
     date_posted: "2020-02-15 08:31:21",
     date_uploaded: "2020-02-14 03:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1790,
@@ -336,7 +364,7 @@ var rowData = [
     date_posted: "2020-02-15 09:14:34",
     date_uploaded: "2020-02-14 02:45:46",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1786,
@@ -346,7 +374,7 @@ var rowData = [
     date_posted: "2020-02-13 12:30:06",
     date_uploaded: "2020-02-13 03:30:03",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1791,
@@ -356,7 +384,7 @@ var rowData = [
     date_posted: "2020-02-15 09:14:34",
     date_uploaded: "2020-02-13 02:45:10",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1787,
@@ -366,7 +394,7 @@ var rowData = [
     date_posted: "2020-02-13 12:30:06",
     date_uploaded: "2020-02-12 02:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1788,
@@ -376,7 +404,7 @@ var rowData = [
     date_posted: "2020-02-13 12:30:07",
     date_uploaded: "2020-02-11 03:45:00",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1785,
@@ -386,7 +414,7 @@ var rowData = [
     date_posted: "2020-02-13 12:20:08",
     date_uploaded: "2020-02-07 09:30:00",
     cat_id: 1,
-    cat_name: "Movies"
+    cat_name: "Movies",
   },
   {
     vid: 1784,
@@ -396,7 +424,7 @@ var rowData = [
     date_posted: "2020-02-10 02:21:22",
     date_uploaded: "2020-02-07 04:00:12",
     cat_id: 3,
-    cat_name: "TV Shows"
+    cat_name: "TV Shows",
   },
   {
     vid: 1782,
@@ -406,10 +434,205 @@ var rowData = [
     date_posted: "2020-02-08 12:40:27",
     date_uploaded: "2020-02-07 03:45:01",
     cat_id: 3,
-    cat_name: "TV Shows"
-  }
+    cat_name: "TV Shows",
+  },
+];
+/*
+var columnDefs2 = [
+  { headerName: "Id", field: "id", sortable: true, colWidth: "60px" },
+  {
+    headerName: "Name",
+    field: "employee_name",
+    sortable: true,
+  },
+  {
+    headerName: "Salary",
+    field: "employee_salary",
+    sortable: true,
+    colWidth: "120px",
+  },
+  {
+    headerName: "Age",
+    field: "employee_age",
+    sortable: true,
+    colWidth: "70px",
+  },
+  { headerName: "Profile Image", field: "profile_image", colType: "image" },
+];
+var rowData2 = [
+  {
+    id: "1",
+    employee_name: "Tiger Nixon",
+    employee_salary: "320800",
+    employee_age: "61",
+    profile_image: "",
+  },
+  {
+    id: "2",
+    employee_name: "Garrett Winters",
+    employee_salary: "170750",
+    employee_age: "63",
+    profile_image: "",
+  },
+  {
+    id: "3",
+    employee_name: "Ashton Cox",
+    employee_salary: "86000",
+    employee_age: "66",
+    profile_image: "",
+  },
+  {
+    id: "4",
+    employee_name: "Cedric Kelly",
+    employee_salary: "433060",
+    employee_age: "22",
+    profile_image: "",
+  },
+  {
+    id: "5",
+    employee_name: "Airi Satou",
+    employee_salary: "162700",
+    employee_age: "33",
+    profile_image: "",
+  },
+  {
+    id: "6",
+    employee_name: "Brielle Williamson",
+    employee_salary: "372000",
+    employee_age: "61",
+    profile_image: "",
+  },
+  {
+    id: "7",
+    employee_name: "Herrod Chandler",
+    employee_salary: "137500",
+    employee_age: "59",
+    profile_image: "",
+  },
+  {
+    id: "8",
+    employee_name: "Rhona Davidson",
+    employee_salary: "327900",
+    employee_age: "55",
+    profile_image: "",
+  },
+  {
+    id: "9",
+    employee_name: "Colleen Hurst",
+    employee_salary: "205500",
+    employee_age: "39",
+    profile_image: "",
+  },
+  {
+    id: "10",
+    employee_name: "Sonya Frost",
+    employee_salary: "103600",
+    employee_age: "23",
+    profile_image: "",
+  },
+  {
+    id: "11",
+    employee_name: "Jena Gaines",
+    employee_salary: "90560",
+    employee_age: "30",
+    profile_image: "",
+  },
+  {
+    id: "12",
+    employee_name: "Quinn Flynn",
+    employee_salary: "342000",
+    employee_age: "22",
+    profile_image: "",
+  },
+  {
+    id: "13",
+    employee_name: "Charde Marshall",
+    employee_salary: "470600",
+    employee_age: "36",
+    profile_image: "",
+  },
+  {
+    id: "14",
+    employee_name: "Haley Kennedy",
+    employee_salary: "313500",
+    employee_age: "43",
+    profile_image: "",
+  },
+  {
+    id: "15",
+    employee_name: "Tatyana Fitzpatrick",
+    employee_salary: "385750",
+    employee_age: "19",
+    profile_image: "",
+  },
+  {
+    id: "16",
+    employee_name: "Michael Silva",
+    employee_salary: "198500",
+    employee_age: "66",
+    profile_image: "",
+  },
+  {
+    id: "17",
+    employee_name: "Paul Byrd",
+    employee_salary: "725000",
+    employee_age: "64",
+    profile_image: "",
+  },
+  {
+    id: "18",
+    employee_name: "Gloria Little",
+    employee_salary: "237500",
+    employee_age: "59",
+    profile_image: "",
+  },
+  {
+    id: "19",
+    employee_name: "Bradley Greer",
+    employee_salary: "132000",
+    employee_age: "41",
+    profile_image: "",
+  },
+  {
+    id: "20",
+    employee_name: "Dai Rios",
+    employee_salary: "217500",
+    employee_age: "35",
+    profile_image: "",
+  },
+  {
+    id: "21",
+    employee_name: "Jenette Caldwell",
+    employee_salary: "345000",
+    employee_age: "30",
+    profile_image: "",
+  },
+  {
+    id: "22",
+    employee_name: "Yuri Berry",
+    employee_salary: "675000",
+    employee_age: "40",
+    profile_image: "",
+  },
+  {
+    id: "23",
+    employee_name: "Caesar Vance",
+    employee_salary: "106450",
+    employee_age: "21",
+    profile_image: "",
+  },
+  {
+    id: "24",
+    employee_name: "Doris Wilder",
+    employee_salary: "85600",
+    employee_age: "23",
+    profile_image: "",
+  },
 ];
 
+*/
 DGrid("#grid1").Grid(columnDefs, rowData, "default");
 
-DGrid("#grid2").Grid(columnDefs, rowData, "default");
+//DGrid("#grid2").Grid(columnDefs2, rowData2, "default");
+
+// DGrid("#grid2").Grid(columnDefs, rowData, "default");

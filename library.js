@@ -10,7 +10,7 @@ function DGrid(selector) {
       },
       set dataArray(data) {
         this._dataArr = data;
-      }
+      },
     },
 
     //event handler
@@ -19,7 +19,7 @@ function DGrid(selector) {
     },
 
     //sorting
-    SortByColumn: columnIndex => {
+    SortByColumn: (columnIndex) => {
       var table,
         rows,
         switching,
@@ -40,12 +40,22 @@ function DGrid(selector) {
           x = rows[i].getElementsByTagName("TD")[columnIndex];
           y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
           if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            var temphtmlX = x.innerHTML;
+            var temphtmlY = y.innerHTML;
+            if (
+              temphtmlX.replace(/<[^>]*>/g, "").toLowerCase() >
+              temphtmlY.replace(/<[^>]*>/g, "").toLowerCase()
+            ) {
               shouldSwitch = true;
               break;
             }
           } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            var temphtmlX = x.innerHTML;
+            var temphtmlY = y.innerHTML;
+            if (
+              temphtmlX.replace(/<[^>]*>/g, "").toLowerCase() <
+              temphtmlY.replace(/<[^>]*>/g, "").toLowerCase()
+            ) {
               shouldSwitch = true;
               break;
             }
@@ -66,10 +76,28 @@ function DGrid(selector) {
 
     //grid
     Grid: (columnNames, rowData, bgColor) => {
+      var months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
       var templateColor = "md-grid-wrap-default";
       if (bgColor == "default") {
         templateColor = "md-grid-wrap-default";
       }
+
+      //get column field names only into array
+      var columnFileds = [];
 
       self.dataArrays.dataArray = rowData;
       // //sorting
@@ -103,15 +131,36 @@ function DGrid(selector) {
 
       //append header
       for (var i = 0; i < columnCount; i++) {
+        columnFileds.push(columnNames[i]["field"]);
+
         var tableTd = document.createElement("td");
         tableTd.setAttribute("class", "md-grid-col md-grid-col-" + i);
+        var tdSpan = document.createElement("span");
         var cell = document.createTextNode(columnNames[i]["headerName"]);
-        tableTd.setAttribute(
-          "onClick",
-          "DGrid('" + selector + "').SortByColumn('" + i + "')"
-        );
-        //tableTd.setAttribute("onClick", "sortTable(" + i + ")");
-        tableTd.appendChild(cell);
+
+        if (columnNames[i]["sortable"] === true) {
+          tdSpan.setAttribute(
+            "onClick",
+            "DGrid('" + selector + "').SortByColumn('" + i + "')"
+          );
+          tdSpan.setAttribute("class", "md-grid-header-col-name-sortable");
+        }
+
+        tdSpan.setAttribute("class", "md-grid-header-col-name");
+
+        tdSpan.appendChild(cell);
+        tableTd.appendChild(tdSpan);
+
+        //check if column is searchable
+        var createSearchForm = document.createElement("input");
+        if (columnNames[i]["searchable"] === true) {
+          createSearchForm.type = "text";
+          createSearchForm.setAttribute(
+            "class",
+            "md-grid-header-col-search-input"
+          );
+          tableTd.appendChild(createSearchForm);
+        }
 
         //append td to tr
         tableHeaderTr.appendChild(tableTd);
@@ -126,17 +175,75 @@ function DGrid(selector) {
 
         var colCounter = 0;
         for (var prop in rowData[i]) {
-          var tableTd = document.createElement("td");
-          tableTd.setAttribute(
-            "class",
-            "md-grid-col md-grid-col-" + colCounter
-          );
-          var cell = document.createTextNode(rowData[i][prop]);
-          tableTd.appendChild(cell);
-          //append td to tr
-          tableTr.appendChild(tableTd);
+          if (columnFileds.includes(prop)) {
+            var tableTd = document.createElement("td");
 
-          colCounter += 1;
+            if (columnNames[colCounter]["colWidth"]) {
+              tableTd.setAttribute(
+                "width",
+                columnNames[colCounter]["colWidth"]
+              );
+            }
+
+            tableTd.setAttribute(
+              "class",
+              "md-grid-col md-grid-col-" + colCounter
+            );
+
+            var cell = document.createTextNode(rowData[i][prop]);
+
+            //check if coltype is link
+            var anchor = document.createElement("a");
+            if (columnDefs[colCounter]["colType"] === "link") {
+              anchor.href =
+                columnDefs[colCounter]["callLink"] +
+                rowData[i][columnDefs[colCounter]["callLinkParam"]];
+              anchor.setAttribute("target", "_blank");
+              anchor.appendChild(cell);
+              tableTd.appendChild(anchor);
+            }
+
+            //convert date
+            else if (columnNames[colCounter]["colType"] === "date") {
+              var tempDate = new Date(rowData[i][prop]);
+              var tempDateFormat =
+                months[tempDate.getMonth() - 1] +
+                " " +
+                tempDate.getDate() +
+                ", " +
+                tempDate.getFullYear();
+              cell = document.createTextNode(tempDateFormat);
+              tableTd.appendChild(cell);
+            } else if (columnNames[colCounter]["colType"] === "dateTime") {
+              var tempDate = new Date(rowData[i][prop]);
+              var tempDateFormat =
+                months[tempDate.getMonth() - 1] +
+                " " +
+                tempDate.getDate() +
+                ", " +
+                tempDate.getFullYear() +
+                " " +
+                tempDate.getHours() +
+                ":" +
+                tempDate.getMinutes() +
+                ":" +
+                tempDate.getSeconds();
+              cell = document.createTextNode(tempDateFormat);
+              tableTd.appendChild(cell);
+            } else if (columnNames[colCounter]["colType"] === "image") {
+              var tempImg = document.createElement("img");
+              tempImg.src = rowData[i][prop];
+              tempImg.setAttribute("height", "20px");
+              cell = tempImg;
+              tableTd.appendChild(cell);
+            } else {
+              tableTd.appendChild(cell);
+            }
+            //append td to tr
+            tableTr.appendChild(tableTd);
+
+            colCounter += 1;
+          }
         }
         tableBody.appendChild(tableTr);
       }
@@ -145,11 +252,15 @@ function DGrid(selector) {
       gridWrap.appendChild(tableWrap);
 
       //display full grid inside unique id
-      document.querySelector(selector).appendChild(gridWrap);
+
+      if (gridWrap === null) {
+      } else {
+        document.querySelector(selector).appendChild(gridWrap);
+      }
 
       //var gridOffset = document.querySelector(selector).offsetTop;
       // document.querySelector(".md-grid-header .md-grid-col").style.top = gridOffset + "px";
-    }
+    },
   };
 
   return self;
