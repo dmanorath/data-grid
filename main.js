@@ -8,7 +8,7 @@ var columnDefs = [
     colType: "link",
     callLink: "https://www.k6aaja.com/videos/watch/",
     callLinkParam: "video_id",
-    searchable: false,
+    searchable: true,
     sortable: true,
   },
   {
@@ -16,6 +16,7 @@ var columnDefs = [
     field: "date_posted",
     sortable: true,
     colWidth: "160px",
+    searchable: false,
     colType: "dateTime",
   },
   {

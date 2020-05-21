@@ -74,6 +74,26 @@ function DGrid(selector) {
       }
     },
 
+    //column search
+    SearchColumn: (columnIndex) => {
+      var input, filter, table, rows, td, i, txtValue;
+      input = document.querySelector(selector+" .md-grid-header-col-search-input");
+      filter = input.value.toUpperCase();
+      table = document.querySelector(selector + " tbody");
+      rows = table.rows;
+      for (i = 0; i < rows.length; i++) {
+        td = rows[i].getElementsByTagName("td")[columnIndex];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }       
+      }
+    },
+
     //grid
     Grid: (columnNames, rowData, bgColor) => {
       var months = [
@@ -143,11 +163,11 @@ function DGrid(selector) {
             "onClick",
             "DGrid('" + selector + "').SortByColumn('" + i + "')"
           );
-          tdSpan.setAttribute("class", "md-grid-header-col-name-sortable");
+          tdSpan.setAttribute("class", "md-grid-header-col-name md-grid-header-col-name-sortable");
         }
-
-        tdSpan.setAttribute("class", "md-grid-header-col-name");
-
+        else{
+          tdSpan.setAttribute("class", "md-grid-header-col-name");
+        }
         tdSpan.appendChild(cell);
         tableTd.appendChild(tdSpan);
 
@@ -158,6 +178,10 @@ function DGrid(selector) {
           createSearchForm.setAttribute(
             "class",
             "md-grid-header-col-search-input"
+          );
+          createSearchForm.setAttribute(
+            "onChange",
+            "DGrid('" + selector + "').SearchColumn('" + i + "')"
           );
           tableTd.appendChild(createSearchForm);
         }
