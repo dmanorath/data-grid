@@ -24,6 +24,7 @@ var columnDefs = [
     field: "date_uploaded",
     colWidth: "160px",
     colType: "date",
+    searchable: false,
     sortable: true,
   },
   { headerName: "Cat Id", field: "cat_id", colWidth: "90px" },
@@ -438,7 +439,7 @@ var rowData = [
     cat_name: "TV Shows",
   },
 ];
-/*
+
 var columnDefs2 = [
   { headerName: "Id", field: "id", sortable: true, colWidth: "60px" },
   {
@@ -458,7 +459,7 @@ var columnDefs2 = [
     sortable: true,
     colWidth: "70px",
   },
-  { headerName: "Profile Image", field: "profile_image", colType: "image" },
+  // { headerName: "Profile Image", field: "profile_image", colType: "image" },
 ];
 var rowData2 = [
   {
@@ -631,9 +632,9 @@ var rowData2 = [
   },
 ];
 
-*/
+
 DGrid("#grid1").Grid(columnDefs, rowData, "default");
 
-//DGrid("#grid2").Grid(columnDefs2, rowData2, "default");
+DGrid("#grid2").Grid(columnDefs2, rowData2, "default");
 
 // DGrid("#grid2").Grid(columnDefs, rowData, "default");

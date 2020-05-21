@@ -1,3 +1,10 @@
+/*************************
+Author: Manorath Dhakal
+Author URL: https://www.mrdhakal.com
+Project URL: https://projects.mrdhakal.com/
+Description: JS Plugin for md-grid
+*************************/
+
 function DGrid(selector) {
   const self = {
     element: document.querySelector(selector),
@@ -112,8 +119,10 @@ function DGrid(selector) {
       ];
 
       var templateColor = "md-grid-wrap-default";
-      if (bgColor == "default") {
+      if (bgColor === "default") {
         templateColor = "md-grid-wrap-default";
+      }else if(bgColor === "noborder") {
+        templateColor = "md-grid-wrap-noborder";
       }
 
       //get column field names only into array
@@ -149,7 +158,7 @@ function DGrid(selector) {
       var tableBody = document.createElement("tbody");
       tableBody.setAttribute("class", "md-grid-body");
 
-      //append header
+      //append column header
       for (var i = 0; i < columnCount; i++) {
         columnFileds.push(columnNames[i]["field"]);
 
@@ -158,6 +167,7 @@ function DGrid(selector) {
         var tdSpan = document.createElement("span");
         var cell = document.createTextNode(columnNames[i]["headerName"]);
 
+        //check if column is sortable
         if (columnNames[i]["sortable"] === true) {
           tdSpan.setAttribute(
             "onClick",
@@ -202,6 +212,7 @@ function DGrid(selector) {
           if (columnFileds.includes(prop)) {
             var tableTd = document.createElement("td");
 
+            //add custom column width
             if (columnNames[colCounter]["colWidth"]) {
               tableTd.setAttribute(
                 "width",
