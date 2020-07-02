@@ -84,7 +84,7 @@ function DGrid(selector) {
     //column search
     SearchColumn: (columnIndex) => {
       var input, filter, table, rows, td, i, txtValue;
-      input = document.querySelector(selector+" .md-grid-header-col-search-input");
+      input = document.querySelector(selector + " .md-grid-header-col-search-input");
       filter = input.value.toUpperCase();
       table = document.querySelector(selector + " tbody");
       rows = table.rows;
@@ -97,7 +97,7 @@ function DGrid(selector) {
           } else {
             rows[i].style.display = "none";
           }
-        }       
+        }
       }
     },
 
@@ -121,7 +121,7 @@ function DGrid(selector) {
       var templateColor = "md-grid-wrap-default";
       if (bgColor === "default") {
         templateColor = "md-grid-wrap-default";
-      }else if(bgColor === "noborder") {
+      } else if (bgColor === "noborder") {
         templateColor = "md-grid-wrap-noborder";
       }
 
@@ -174,8 +174,7 @@ function DGrid(selector) {
             "DGrid('" + selector + "').SortByColumn('" + i + "')"
           );
           tdSpan.setAttribute("class", "md-grid-header-col-name md-grid-header-col-name-sortable");
-        }
-        else{
+        } else {
           tdSpan.setAttribute("class", "md-grid-header-col-name");
         }
         tdSpan.appendChild(cell);
@@ -229,10 +228,10 @@ function DGrid(selector) {
 
             //check if coltype is link
             var anchor = document.createElement("a");
-            if (columnDefs[colCounter]["colType"] === "link") {
+            if (columnNames[colCounter]["colType"] === "link") {
               anchor.href =
-                columnDefs[colCounter]["callLink"] +
-                rowData[i][columnDefs[colCounter]["callLinkParam"]];
+                columnNames[colCounter]["callLink"] +
+                rowData[i][columnNames[colCounter]["callLinkParam"]];
               anchor.setAttribute("target", "_blank");
               anchor.appendChild(cell);
               tableTd.appendChild(anchor);
@@ -288,8 +287,7 @@ function DGrid(selector) {
 
       //display full grid inside unique id
 
-      if (gridWrap === null) {
-      } else {
+      if (gridWrap === null) {} else {
         document.querySelector(selector).appendChild(gridWrap);
       }
 
