@@ -1,3 +1,10 @@
+/*************************
+Author: Manorath Dhakal
+Author URL: https://www.mrdhakal.com
+Project URL: https://projects.mrdhakal.com/
+Description: JS Plugin for md-grid
+*************************/
+
 function DGrid(selector) {
   const self = {
     element: document.querySelector(selector),
@@ -74,6 +81,26 @@ function DGrid(selector) {
       }
     },
 
+    //column search
+    SearchColumn: (columnIndex) => {
+      var input, filter, table, rows, td, i, txtValue;
+      input = document.querySelector(selector+" .md-grid-header-col-search-input");
+      filter = input.value.toUpperCase();
+      table = document.querySelector(selector + " tbody");
+      rows = table.rows;
+      for (i = 0; i < rows.length; i++) {
+        td = rows[i].getElementsByTagName("td")[columnIndex];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }       
+      }
+    },
+
     //grid
     Grid: (columnNames, rowData, bgColor) => {
       var months = [
@@ -92,8 +119,10 @@ function DGrid(selector) {
       ];
 
       var templateColor = "md-grid-wrap-default";
-      if (bgColor == "default") {
+      if (bgColor === "default") {
         templateColor = "md-grid-wrap-default";
+      }else if(bgColor === "noborder") {
+        templateColor = "md-grid-wrap-noborder";
       }
 
       //get column field names only into array
@@ -129,7 +158,7 @@ function DGrid(selector) {
       var tableBody = document.createElement("tbody");
       tableBody.setAttribute("class", "md-grid-body");
 
-      //append header
+      //append column header
       for (var i = 0; i < columnCount; i++) {
         columnFileds.push(columnNames[i]["field"]);
 
@@ -138,16 +167,17 @@ function DGrid(selector) {
         var tdSpan = document.createElement("span");
         var cell = document.createTextNode(columnNames[i]["headerName"]);
 
+        //check if column is sortable
         if (columnNames[i]["sortable"] === true) {
           tdSpan.setAttribute(
             "onClick",
             "DGrid('" + selector + "').SortByColumn('" + i + "')"
           );
-          tdSpan.setAttribute("class", "md-grid-header-col-name-sortable");
+          tdSpan.setAttribute("class", "md-grid-header-col-name md-grid-header-col-name-sortable");
         }
-
-        tdSpan.setAttribute("class", "md-grid-header-col-name");
-
+        else{
+          tdSpan.setAttribute("class", "md-grid-header-col-name");
+        }
         tdSpan.appendChild(cell);
         tableTd.appendChild(tdSpan);
 
@@ -158,6 +188,10 @@ function DGrid(selector) {
           createSearchForm.setAttribute(
             "class",
             "md-grid-header-col-search-input"
+          );
+          createSearchForm.setAttribute(
+            "onChange",
+            "DGrid('" + selector + "').SearchColumn('" + i + "')"
           );
           tableTd.appendChild(createSearchForm);
         }
@@ -178,6 +212,7 @@ function DGrid(selector) {
           if (columnFileds.includes(prop)) {
             var tableTd = document.createElement("td");
 
+            //add custom column width
             if (columnNames[colCounter]["colWidth"]) {
               tableTd.setAttribute(
                 "width",

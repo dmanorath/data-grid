@@ -1,7 +1,8 @@
 /*************************
 Author: Manorath Dhakal
-URL: https://projects.mrdhakal.com/
-Description: DGrid for CSS 
+Author URL: https://www.mrdhakal.com
+Project URL: https://projects.mrdhakal.com/
+Description: CSS for md-grid 
 *************************/
 
 .md-grid-wrap-default {
@@ -71,6 +72,6 @@ Description: DGrid for CSS
   margin-left: 20px;
 }
 
-.md-grid-wrap-default .md-grid-header-col-name-sortable {
+.md-grid-header-col-name-sortable {
   cursor: pointer !important;
 }

@@ -11,7 +11,7 @@ var columnDefs = [{
     colType: "link",
     callLink: "https://www.k6aaja.com/videos/watch/",
     callLinkParam: "video_id",
-    searchable: false,
+    searchable: true,
     sortable: true,
   },
   {
@@ -19,6 +19,7 @@ var columnDefs = [{
     field: "date_posted",
     sortable: true,
     colWidth: "160px",
+    searchable: false,
     colType: "dateTime",
   },
   {
@@ -26,6 +27,7 @@ var columnDefs = [{
     field: "date_uploaded",
     colWidth: "160px",
     colType: "date",
+    searchable: false,
     sortable: true,
   },
   {
@@ -406,7 +408,7 @@ var rowData = [{
     cat_name: "TV Shows",
   },
 ];
-/*
+
 var columnDefs2 = [
   { headerName: "Id", field: "id", sortable: true, colWidth: "60px" },
   {
@@ -426,7 +428,7 @@ var columnDefs2 = [
     sortable: true,
     colWidth: "70px",
   },
-  { headerName: "Profile Image", field: "profile_image", colType: "image" },
+  // { headerName: "Profile Image", field: "profile_image", colType: "image" },
 ];
 var rowData2 = [
   {
@@ -599,10 +601,15 @@ var rowData2 = [
   },
 ];
 
+<<<<<<< HEAD
 */
 
 DGrid("#grid1").Grid(columnDefs, rowData, "default", "scroll");
+=======
 
-//DGrid("#grid2").Grid(columnDefs2, rowData2, "default");
+DGrid("#grid1").Grid(columnDefs, rowData, "default");
+>>>>>>> cb8a293dcc3bc5ead9fb1022e7127979b9e8027d
+
+DGrid("#grid2").Grid(columnDefs2, rowData2, "default");
 
 // DGrid("#grid2").Grid(columnDefs, rowData, "default");
